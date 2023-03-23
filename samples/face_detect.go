@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/go-opencv/go-opencv/opencv"
 	"path"
 	"runtime"
+
+	"github.com/jan-bar/go-opencv/opencv"
 )
 
 func main() {

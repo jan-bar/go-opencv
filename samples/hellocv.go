@@ -10,8 +10,7 @@ import (
 	"path"
 	"runtime"
 
-	"github.com/go-opencv/go-opencv/opencv"
-	//"../opencv" // can be used in forks, comment in real application
+	"github.com/jan-bar/go-opencv/opencv"
 )
 
 func main() {

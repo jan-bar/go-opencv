@@ -3,11 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	//"path"
-	//"runtime"
 
-	"github.com/go-opencv/go-opencv/opencv"
-	//"../opencv" // can be used in forks, comment in real application
+	"github.com/jan-bar/go-opencv/opencv"
 )
 
 func main() {
@@ -31,7 +28,7 @@ func main() {
 		if cap.GrabFrame() {
 			img := cap.RetrieveFrame(1)
 			if img != nil {
-				ProcessImage(img, win, edge_threshold)
+				WebCamProcessImage(img, win, edge_threshold)
 			} else {
 				fmt.Println("Image ins nil")
 			}
@@ -44,7 +41,7 @@ func main() {
 	}
 }
 
-func ProcessImage(img *opencv.IplImage, win *opencv.Window, pos int) error {
+func WebCamProcessImage(img *opencv.IplImage, win *opencv.Window, pos int) error {
 	w := img.Width()
 	h := img.Height()
 

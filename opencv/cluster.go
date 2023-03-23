@@ -4,7 +4,11 @@
 
 package opencv
 
-//#include "opencv.h"
+/*
+#cgo CFLAGS: -I${SRCDIR}/include
+#cgo LDFLAGS: -L${SRCDIR}/lib
+#include "opencv.h"
+*/
 import "C"
 import "unsafe"
 

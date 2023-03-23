@@ -7,7 +7,6 @@ package opencv
 //#include "opencv.h"
 import "C"
 import (
-	//"errors"
 	"unsafe"
 )
 
@@ -757,18 +756,18 @@ func AbsDiffScalar(src *IplImage, value Scalar, dst *IplImage) {
 *                                    Array Statistics                         *
 \****************************************************************************************/
 // CvScalar cvAvg(const CvArr* arr, const CvArr* mask=NULL )
-func (src *IplImage) Avg(mask *IplImage) Scalar {
-	return (Scalar)(C.cvAvg(unsafe.Pointer(src), unsafe.Pointer(mask)))
+func (img *IplImage) Avg(mask *IplImage) Scalar {
+	return (Scalar)(C.cvAvg(unsafe.Pointer(img), unsafe.Pointer(mask)))
 }
 
 // cvEqualizeHist(const CvArr* src, CvArr* dst)
-func (src *IplImage) EqualizeHist(dst *IplImage) {
-	C.cvEqualizeHist(unsafe.Pointer(src), unsafe.Pointer(dst))
+func (img *IplImage) EqualizeHist(dst *IplImage) {
+	C.cvEqualizeHist(unsafe.Pointer(img), unsafe.Pointer(dst))
 }
 
 // MeanStdDev alculates mean and standard deviation of pixel values
-func (src *IplImage) MeanStdDev() (Scalar, Scalar) {
-	return MeanStdDevWithMask(src, nil)
+func (img *IplImage) MeanStdDev() (Scalar, Scalar) {
+	return MeanStdDevWithMask(img, nil)
 }
 
 // MeanStdDevWithMask calculates mean and standard deviation of pixel values with mask
@@ -890,34 +889,53 @@ func (seq *Seq) Storage() *MemStorage {
 /****************************************************************************************\
 *                                     Drawing                                 *
 \****************************************************************************************/
+func getDefaultThicknessLineTypeShift(args ...int) (int, int, int) {
+	thickness, lineType, shift := 1, 8, 0 // default value
+	switch len(args) {
+	case 3:
+		shift = args[2]
+		fallthrough
+	case 2:
+		lineType = args[1]
+		fallthrough
+	case 1:
+		thickness = args[0]
+	}
+	return thickness, lineType, shift
+}
 
 /* Draws 4-connected, 8-connected or antialiased line segment connecting two points */
 //color Scalar,
-func Line(image *IplImage, pt1, pt2 Point, color Scalar, thickness, line_type, shift int) {
+func Line(image *IplImage, pt1, pt2 Point, color Scalar, args ...int) {
+	thickness, lineType, shift := getDefaultThicknessLineTypeShift(args...)
 	C.cvLine(
 		unsafe.Pointer(image),
 		C.cvPoint(C.int(pt1.X), C.int(pt1.Y)),
 		C.cvPoint(C.int(pt2.X), C.int(pt2.Y)),
 		(C.CvScalar)(color),
-		C.int(thickness), C.int(line_type), C.int(shift),
+		C.int(thickness), C.int(lineType), C.int(shift),
 	)
 }
-func Rectangle(image *IplImage, pt1, pt2 Point, color Scalar, thickness, line_type, shift int) {
+
+func Rectangle(image *IplImage, pt1, pt2 Point, color Scalar, args ...int) {
+	thickness, lineType, shift := getDefaultThicknessLineTypeShift(args...)
 	C.cvRectangle(
 		unsafe.Pointer(image),
 		C.cvPoint(C.int(pt1.X), C.int(pt1.Y)),
 		C.cvPoint(C.int(pt2.X), C.int(pt2.Y)),
 		(C.CvScalar)(color),
-		C.int(thickness), C.int(line_type), C.int(shift),
+		C.int(thickness), C.int(lineType), C.int(shift),
 	)
 }
-func Circle(image *IplImage, pt1 Point, radius int, color Scalar, thickness, line_type, shift int) {
+
+func Circle(image *IplImage, pt1 Point, radius int, color Scalar, args ...int) {
+	thickness, lineType, shift := getDefaultThicknessLineTypeShift(args...)
 	C.cvCircle(
 		unsafe.Pointer(image),
 		C.cvPoint(C.int(pt1.X), C.int(pt1.Y)),
 		C.int(radius),
 		(C.CvScalar)(color),
-		C.int(thickness), C.int(line_type), C.int(shift),
+		C.int(thickness), C.int(lineType), C.int(shift),
 	)
 }
 

@@ -4,15 +4,17 @@
 
 package opencv
 
-//#include "opencv.h"
-//#cgo linux  pkg-config: opencv
-//#cgo darwin pkg-config: opencv
-//#cgo freebsd pkg-config: opencv
-//#cgo windows,pkgconfig pkg-config: opencv
-//#cgo windows,!pkgconfig LDFLAGS: -lopencv_core242.dll -lopencv_imgproc242.dll -lopencv_photo242.dll -lopencv_highgui242.dll -lstdc++
+/*
+#include "opencv.h"
+
+#cgo linux  pkg-config: opencv
+#cgo darwin pkg-config: opencv
+#cgo freebsd pkg-config: opencv
+#cgo windows,pkgconfig pkg-config: opencv
+#cgo windows,!pkgconfig LDFLAGS: -lopencv_core249 -lopencv_imgproc249 -lopencv_photo249 -lopencv_highgui249 -lopencv_objdetect249 -lstdc++
+*/
 import "C"
 import (
-	//"errors"
 	"unsafe"
 )
 

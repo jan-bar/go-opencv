@@ -89,7 +89,7 @@ func main() {
 ```go
 package main
 
-import opencv "github.com/go-opencv/go-opencv/opencv"
+import opencv "github.com/jan-bar/go-opencv/opencv"
 
 func main() {
 	filename := "bert.jpg"
@@ -146,4 +146,8 @@ You can find more samples at: https://github.com/go-opencv/go-opencv/tree/master
   ```
 
 - Open a pull request!
+
+link
+
+[goOpenCv](https://github.com/jan-bar/goOpenCv)
 

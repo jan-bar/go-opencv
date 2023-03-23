@@ -11,8 +11,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/go-opencv/go-opencv/opencv"
 	"os"
+
+	"github.com/jan-bar/go-opencv/opencv"
 )
 
 func main() {

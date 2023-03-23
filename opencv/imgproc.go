@@ -7,8 +7,6 @@ package opencv
 //#include "opencv.h"
 import "C"
 import (
-	//"errors"
-	//"log"
 	"unsafe"
 )
 
@@ -89,12 +87,12 @@ func Crop(src *IplImage, x, y, width, height int) *IplImage {
 
 /* Returns a Seq of countours in an image, detected according to the parameters.
    Caller must Release() the Seq returned */
-func (image *IplImage) FindContours(mode, method int, offset Point) *Seq {
+func (img *IplImage) FindContours(mode, method int, offset Point) *Seq {
 	storage := C.cvCreateMemStorage(0)
 	header_size := (C.size_t)(unsafe.Sizeof(C.CvContour{}))
 	var seq *C.CvSeq
 	C.cvFindContours(
-		unsafe.Pointer(image),
+		unsafe.Pointer(img),
 		storage,
 		&seq,
 		C.int(header_size),
