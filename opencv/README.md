@@ -8,6 +8,8 @@
 
 然后根据脚本进行编译: [编译脚本](https://github.com/hybridgroup/gocv/blob/release/win_build_opencv.cmd)
 
+`set http_proxy=127.0.0.1:1081 & set https_proxy=127.0.0.1:1081` 设置代理中途需要下载GitHub资源
+
 `set enable_shared=ON` 使用动态dll编译,记得cmake命令里面几个路径改为自己需要的
 
 `cp install\x64\mingw\bin C:\opencv\build\install\x64\mingw\lib`,将dll复制到gocv默认路径
