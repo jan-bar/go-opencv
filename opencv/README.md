@@ -19,3 +19,5 @@
 注意编译出来的可执行程序还依赖`libwinpthread-1.dll,libstdc++-6.dll,libgcc_s_seh-1.dll`这3个dll,一般安装window的git就有
 
 不然还得将上面解压的gcc环境里的这3个dll路径添加到PATH环境变量中
+
+参照: [build_opencv](build_opencv.bat)
